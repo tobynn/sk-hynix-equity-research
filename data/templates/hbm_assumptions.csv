@@ -1,0 +1,5 @@
+scenario,generation,year,volume_index,asp_index,yield_ramp,ebit_margin,source,as_of_date,notes
+Base,HBM3E,2026,100,100,0.95,0.38,ILLUSTRATIVE,,Replace with sourced input
+Base,HBM4,2026,35,125,0.70,0.28,ILLUSTRATIVE,,Replace with sourced input
+Base,HBM4E,2026,0,145,0.00,0.20,ILLUSTRATIVE,,Replace with sourced input
+
