@@ -2,6 +2,10 @@
 
 이 저장소는 “숫자를 채우는 파일”보다 “왜 그 숫자를 썼는지 설명할 수 있는 분석”을 목표로 합니다.
 
+## 현재 버전 읽는 순서
+
+최종 결과는 `model/SK_hynix_equity_research_final.xlsx`와 `report/SK_hynix_equity_research_report.pdf`에 있습니다. 실제치, 출처, DCF·RIM·PER·SOTP 연결을 모두 담았으며, 기존 세 개의 모델 파일은 구조 참고용 템플릿입니다. 피어 선정 근거는 `research/PEER_SELECTION_SCORECARD.md`를 먼저 확인합니다.
+
 ## 1. 먼저 고정할 것
 
 - 기준일: 주가·환율·순현금·발행주식수의 동일 시점
