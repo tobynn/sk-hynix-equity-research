@@ -30,14 +30,23 @@ SK하이닉스의 HBM 세대 전환을 중심에 둔 기업분석 포트폴리�
 
 ## Peer 원칙
 
-PER peer는 **(1) 매출의 70% 이상이 범용·고대역폭 메모리, (2) 자체 웨이퍼 생산과 CAPEX 부담, (3) DRAM 가격 사이클 노출, (4) DRAM/NAND 혼합에 따른 이익 변동성**을 동시에 충족해야 합니다. 이 네 조건을 모두 충족하는 상장 순수 메모리 기업은 Micron뿐이어서, PER의 직접 앵커는 Micron 한 곳입니다.
+피어는 목적에 따라 직접 PER 앵커, 사업부 운영 비교, NAND 사업 비교, AI 수요 지표로 나눕니다. 직접 PER 앵커는 수익 원천·가격 사이클·자체 제조와 CAPEX·정상화 가능한 실적 자료를 모두 통과해야 합니다. Micron이 직접 경제성 앵커이며, 적격 표본이 한 곳이면 peer 평균을 만들지 않습니다. 삼성 전사 PER와 AI 고객/공급망 기업은 직접 표본에 섞지 않습니다.
 
 - **Micron**: 직접 앵커. DRAM·NAND 자체 생산, 메모리 가격 사이클, 대규모 CAPEX라는 경제적 특성이 SK하이닉스와 일치합니다.
 - **Samsung Electronics DS**: 메모리 사업부의 수율·HBM·CAPEX 비교용. 전사 PER는 모바일·가전·파운드리 가치가 섞여 있어 직접 비교에서 제외합니다.
 - **Kioxia·SanDisk**: NAND/Solidigm 사업부에만 적용하는 부분 peer. DRAM/HBM 멀티플에는 사용하지 않습니다.
 - **NVIDIA·TSMC·Broadcom**: 고객 투자·AI 수요의 방향을 읽는 질적 지표. 자본집약도와 사업모델이 달라 직접 PER 표본에서 제외합니다.
 
-세부 판정표와 제외 사유는 [Peer Selection Scorecard](research/PEER_SELECTION_SCORECARD.md)를 확인하세요.
+Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메모리 사이클의 이익을 정상화하고, 성장 지속기간·현금전환·고객 집중·CAPEX·사이클 민감도를 같은 정의로 비교합니다. 숫자 프리미엄은 역사적 상대 배수로 검증될 때만 보정하고, 자료가 부족하면 배수 범위와 민감도를 제시합니다. 세부 판정표는 [Peer Selection Scorecard](research/PEER_SELECTION_SCORECARD.md)에 있습니다.
+
+## Valuation vintage와 하이닉스 고유 기준
+
+기준일의 종가, 공시 컷오프, 최신 실제 분기, 순현금, 환율, 희석 주식수, 전망자료의 관측일을 한 스냅샷으로 고정합니다. 발표 이후 공개된 실적을 이전 날짜의 판단에 섞지 않습니다. HBM은 HBM3E·HBM4 같은 세대별 표만 만들지 않고 개발·인증·초기 양산·수율 안정·성숙 단계로 나눠 출하와 이익 반영 시점을 판단합니다.
+
+- [Valuation Vintage Policy](research/VALUATION_VINTAGE_POLICY.md): 기준일·공시 컷오프·실적 업데이트 기록 규칙
+- [SK hynix Company-Specific Framework](research/COMPANY_SPECIFIC_FRAMEWORK.md): HBM·서버/범용 DRAM·NAND/eSSD·CAPEX의 고유 분석 기준
+- [Valuation Framework](research/VALUATION_FRAMEWORK.md): SOTP 중심과 DCF·RIM·cycle PER의 역할 및 결과 충돌 해석
+- [Peer Selection Scorecard](research/PEER_SELECTION_SCORECARD.md): 직접 앵커 통과 조건, 후보군 역할, 정상화와 multiple 조정법
 
 ## 저장소 구조
 
@@ -70,6 +79,9 @@ PER peer는 **(1) 매출의 70% 이상이 범용·고대역폭 메모리, (2) �
 
 - 모든 핵심 가정에는 출처·기준일·단위가 있어야 합니다.
 - HBM 프리미엄은 매출 성장 자체가 아니라 **이익 믹스·ROE·가시성**으로 설명합니다.
+- 공개 실적과 분석가 추정, 확정치와 계획치를 구분해 기록합니다.
+- HBM 세대 premium은 샘플·인증·양산·수율 안정 증거에 따라 단계적으로 반영합니다.
+- 숫자 PER 조정치는 과거 상대 배수로 검증되지 않으면 확정 프리미엄으로 표현하지 않습니다.
 - 고객 집중도·CAPEX·세대 전환·메모리 사이클은 할인 요인으로 명시합니다.
 - 회사 전체와 사업부 peer를 섞지 않습니다.
 - 실적 추정치와 시장가격은 기준일을 고정합니다.

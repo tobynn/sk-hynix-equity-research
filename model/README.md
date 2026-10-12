@@ -7,7 +7,9 @@
 - 최종 결과: SOTP 2,139,000원, DCF 1,679,000원, Peer PER 1,829,000원, RIM 997,000원
 - 노란색 셀: 분석가 가정 또는 갱신 입력값
 - `HBM Build`: HBM3E → HBM4 → HBM4E의 매출·마진 전환을 별도 점검
-- `Peer PER`: Micron 단일 직접 앵커와 프리미엄·할인 브리지를 사용하며, 단순 peer 평균을 사용하지 않음
+- `Peer PER`: Micron 직접 경제성 앵커와 회사별 요인 브리지. 기존 x 조정은 역사적 peer-relative multiple로 보정되지 않은 시나리오 입력이며 확정 프리미엄이 아님
+- `Actuals & Sources`: 평가일, 정보 컷오프, 최신 실제치, 전망 vintage, 주가·주식수 기준일을 기록
+- 기업 고유 분석: `research/COMPANY_SPECIFIC_FRAMEWORK.md`와 `research/VALUATION_VINTAGE_POLICY.md` 참조
 
 ## 참조 템플릿
 

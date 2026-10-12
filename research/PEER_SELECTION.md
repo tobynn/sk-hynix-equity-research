@@ -1,31 +1,16 @@
 # Peer Selection
 
-## 원칙
+최신 peer 선정과 multiple 보정 기준은 [Peer Selection Scorecard](PEER_SELECTION_SCORECARD.md)에 통합했다.
 
-Peer는 “같은 테마”가 아니라 **수익의 원천, 사이클, 자본집약도, 회계 단위**가 비슷한 기업을 우선합니다.
+## 빠른 요약
 
-| 기업 | 역할 | 사용 방식 | 판단 |
-|---|---|---|---|
-| Micron | Primary anchor | Cycle-adjusted forward PER, EBITDA/EBIT margin | 직접 포함 |
-| Samsung Electronics | Secondary reference | 메모리 부문 수익성·CAPEX·기술 격차 | 전사 PER 제외 |
-| Kioxia | NAND check | NAND 사이클·마진·EV/EBIT | NAND 부문에만 사용 |
-| SanDisk | NAND check | NAND 시장·수익성 교차검증 | NAND 부문에만 사용 |
-| NVIDIA | AI ecosystem | AI 수요와 고객 투자 방향 | 직접 멀티플 제외 |
-| TSMC | AI ecosystem | 첨단 공정·패키징 병목 | 직접 멀티플 제외 |
-| Broadcom | AI ecosystem | ASIC·네트워크 수요 | 직접 멀티플 제외 |
+- **Micron**: 전사 메모리 경제성의 직접 anchor 후보. 업황 정상화 이익, 평가일, 회계 기준을 맞춘 뒤 배수 범위를 비교한다.
+- **Samsung Electronics DS**: 메모리 운영·수율·CAPEX 비교. 연결 PER는 직접 사용하지 않는다.
+- **Kioxia·SanDisk**: NAND/eSSD 사업 비교에만 사용한다. 전사 배수를 HBM/DRAM에 적용하지 않는다.
+- **AI 고객·파운드리·패키징 공급망**: 수요와 병목 확인 자료. 메모리 제조 peer multiple에는 포함하지 않는다.
 
-## PER 브리지
+직접 peer가 한 곳이면 peer 평균을 계산하지 않는다. Base/Bull/Bear의 x 조정치는 역사적 상대 multiple로 보정되지 않은 경우 분석가 시나리오 입력이라고 표시한다. 임의의 고정 premium을 객관적 시장 배수처럼 서술하지 않는다.
 
-목표 PER는 다음 항목을 명시적으로 더하고 빼서 산출합니다.
+## 상세 기준
 
-`Micron cycle-adjusted PER + HBM 이익 믹스 + EPS 성장 + ROE + 실적 가시성 - 고객 집중 - CAPEX - 사이클 변동성`
-
-각 조정치는 0.5x 단위 등으로 제한하고, 한 줄마다 근거와 만료 조건을 기록합니다. “AI 프리미엄”처럼 검증 불가능한 단일 항목은 사용하지 않습니다.
-
-## 금지사항
-
-- peer 평균을 계산한 뒤 임의의 10~30% 프리미엄 부여
-- Samsung Electronics 전사 PER를 메모리 사업 peer로 직접 사용
-- 음수 또는 비정상 저점 EPS의 PER를 그대로 평균
-- 기준일이 다른 주가와 추정 EPS를 혼합
-
+회계·주가 시점을 맞추는 법은 [Valuation Vintage Policy](VALUATION_VINTAGE_POLICY.md), peer 통과 조건과 cycle EPS 정상화는 [Peer Selection Scorecard](PEER_SELECTION_SCORECARD.md), 제품별 평가 논리는 [Valuation Framework](VALUATION_FRAMEWORK.md)에 있다.

@@ -14,13 +14,15 @@ SOTP는 2,139,000원을 가리키지만, DCF와 RIM은 CAPEX와 ROE 정상화에
 
 SK하이닉스는 FY2025에 매출 97.1조원, 영업이익 47.2조원, 순이익 42.9조원을 기록했다. 2026년 2분기에는 매출 79.3조원, 영업이익 60.5조원, 순이익 93.9조원을 기록했고, 6월 말 순현금은 69.4조원이었다. 회사는 HBM4 양산 출하, 약 10개 고객과의 장기 공급계약, 321단 NAND 생산 확대를 언급했다. [FY25 실적](https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/) · [2Q26 실적](https://news.skhynix.com/en/q2-2026-business-results/) · [반기보고서](https://opendart.fss.or.kr/xbrl/viewer/main.do?lang=en&rcpNo=20260814003509)
 
-## 2. HBM 빈티지
+## 2. HBM 세대별 이익이 만들어지는 단계
 
-2026년은 HBM3E의 고수익성이 HBM4 양산으로 이어지는 해다. HBM4의 ASP와 수율이 동시에 정상화되어야 HBM 프리미엄이 유지된다. 2027년에는 HBM4가 주력으로 이동하고 HBM4E가 초기 램프에 진입한다. 이 경로가 지연되면 SOTP의 HBM/AI DRAM EBIT와 PER의 HBM 프리미엄을 동시에 낮춰야 한다.
+세대별 제품은 개발·샘플 → 고객 인증 → 초기 양산 → 수율·공급 안정 → 성숙·세대 전환 단계로 분류한다. 제품 발표와 샘플 출하는 고객 인증·양산 물량과 구분한다. 실제 수익 반영은 출하 stack, ASP, die·적층·패키징 원가, 초기 램프 비용을 확인해 판단한다. HBM의 DRAM die를 범용 DRAM 출하량에 중복 계상하지 않는다.
+
+HBM4·HBM4E 일정과 제품 계획은 전망 정보다. 공시된 실적과 고객 인증 상태가 확인되기 전에는 세대별 물량·수율·ASP를 analyst assumption으로 표시한다. 평가일 컷오프와 단계 변경 근거는 [Valuation Vintage Policy](../research/VALUATION_VINTAGE_POLICY.md)에 기록한다.
 
 ## 3. Peer group: 왜 Micron만 직접 PER peer인가
 
-직접 PER peer는 DRAM/HBM 중심의 제품 경제성, 자체 생산과 CAPEX, 메모리 가격 사이클 노출, 높은 이익 변동성을 모두 충족해야 한다. Micron만 네 기준을 모두 충족한다. 삼성전자는 DS 사업부는 유사하지만 전사 PER에는 모바일·가전·파운드리가 포함된다. Kioxia와 SanDisk는 NAND/Solidigm 사업부의 마진과 멀티플 점검에만 사용한다. NVIDIA·TSMC·Broadcom은 고객 투자와 AI 수요를 읽는 자료이며 직접 PER 표본에서는 제외한다. 자세한 판정은 [Peer scorecard](../research/PEER_SELECTION_SCORECARD.md)에 있다.
+직접 앵커는 자체 메모리 제조가 이익의 중심인지, 메모리 가격과 재고가 실적에 전달되는지, 팹·감가상각·CAPEX를 직접 부담하는지, 완전한 업황을 포함하는 정상화 자료가 있는지, 평가일·회계 기준을 맞출 수 있는지로 판정한다. Micron은 직접 경제성 앵커 후보다. 삼성은 메모리 부문 운영 비교, Kioxia·SanDisk는 NAND 부문 비교에만 쓴다. NVIDIA·TSMC·Broadcom은 수요·병목 확인 자료다. 직접 표본이 하나면 평균 peer multiple을 만들지 않고 단일 앵커의 cycle-normalized 범위와 회사별 차이를 제시한다.
 
 ## 4. 밸류에이션
 
@@ -28,7 +30,7 @@ SOTP는 HBM/AI DRAM 70조원 EBIT에 11.0배, 범용 DRAM 80조원에 6.5배, NA
 
 DCF는 2026E CAPEX 55조원에서 2028E 68조원까지의 투자를 반영했다. 9.5% WACC와 2.5% terminal growth를 적용한 주당가치는 1,679,000원이다. SOTP보다 낮은 이유는 높은 회계이익이 그대로 자유현금흐름으로 전환된다는 가정을 두지 않았기 때문이다.
 
-PER은 Micron 정상화 8.0배에서 시작한다. HBM 이익 믹스(+0.8배), ROE의 질(+0.4배), 장기 공급 가시성(+0.3배)을 더하고 고객집중(-0.4배), CAPEX(-0.5배), 사이클 변동성(-0.6배)을 차감해 최종 8.0배가 된다. 2027E 정상화 EPS 228,571원을 적용하면 1,829,000원이다. Micron 자료는 [Micron IR](https://investors.micron.com/events-and-presentations/default.aspx)에서 갱신한다.
+현재 PER 브리지의 8.0배 Micron anchor와 요인별 조정치는 Base/Bull/Bear **분석가 시나리오 입력값**이다. 공개된 역사적 상대 multiple로 계수를 보정하지 않았으므로 실증된 프리미엄으로 읽으면 안 된다. 조정 요인은 세대별 HBM 이익 믹스, 초과수익 지속기간, 현금전환, 고객 집중, CAPEX 강도, DRAM·NAND 사이클이다. 같은 요인을 Forecast 성장률과 multiple에 중복 반영하지 않는다. 역사적 짝지은 데이터와 표본 수·오차 범위가 마련되기 전까지는 숫자 프리미엄을 확정하지 않고 Micron의 정상화 배수 범위 민감도로 해석해야 한다. 현재 2027E EPS 228,571원과 8.0배를 적용한 표시값은 1,829,000원 수준의 **가정 결과**다. 피어 판정과 보정 절차는 [Peer scorecard](../research/PEER_SELECTION_SCORECARD.md)를 참고한다.
 
 RIM은 terminal ROE가 14%로 수렴한다고 보아 997,000원을 계산한다. 이 값은 목표주가가 아니라, 초과 ROE의 지속 기간이 짧아지는 상황에서 시장이 감수할 수 있는 하방을 보여준다.
 
@@ -44,7 +46,7 @@ RIM은 terminal ROE가 14%로 수렴한다고 보아 997,000원을 계산한다.
 
 ## 6. 한계
 
-공시로 확인할 수 없는 고객별 HBM 물량·단가·수율은 추정 가정이다. 컨센서스 데이터는 라이선스 제약상 저장소에 포함하지 않았다. 다음 실적 발표 후 `Actuals & Sources`, `Forecast`, `Peer PER` 순서로 갱신한다.
+공시로 확인할 수 없는 고객별 HBM 물량·단가·수율은 analyst assumption이다. 사업부별 HBM/일반 DRAM 이익 분할과 개별 SOTP multiple도 공개 자료와 historical calibration이 보강될 때까지 시나리오 가정으로 읽어야 한다. 컨센서스 데이터는 라이선스 제약상 저장소에 포함하지 않았다. 기준일·정보 컷오프·전망 vintage는 `Actuals & Sources`에 고정하고 다음 실적 발표 후 `Actuals & Sources`, `Forecast`, `HBM Build`, `SOTP`, `DCF`, `RIM`, `Peer PER` 순서로 갱신한다.
 
 ## 7. 출처
 

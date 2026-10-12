@@ -27,6 +27,16 @@
 | Cycle-adjusted PER | 1,829,000원 | Micron 직접 앵커에 근거 조정을 반영 |
 | RIM | 997,000원 | 잔여이익이 빠르게 정상화되는 경우의 하방 |
 
+PER의 Micron 기준배수와 요인별 Base/Bull/Bear 조정값은 현재 분석가 시나리오 입력이다. 역사적 peer-relative multiple로 보정되지 않았으므로 실증된 premium으로 해석하지 않는다. SOTP 부문별 EBIT와 배수도 회사가 공개하지 않은 분할을 포함하는 경우 분석가 가정으로 구분한다. 방법과 증거 기준은 [Peer Selection Scorecard](PEER_SELECTION_SCORECARD.md), [Valuation Framework](VALUATION_FRAMEWORK.md)에 정리했다.
+
+## 하이닉스 분석에서 구분하는 수익원
+
+HBM은 세대별로 고객 인증, 초기 양산, 수율·공급 안정, 성숙·세대 전환을 나눠 봅니다. 서버 DRAM, 클라이언트·모바일 DRAM, NAND/eSSD는 각각 bit 수요·ASP·재고·원가·투자 회수 지표로 분석합니다. HBM에 포함된 DRAM 다이와 범용 DRAM 물량의 중복, 연결 이익과 사업부 추정치의 혼합을 피합니다. [Company-Specific Framework](COMPANY_SPECIFIC_FRAMEWORK.md)에 부문별 질문과 모델 반영 기준이 있습니다.
+
+## 정보 기준일
+
+가격 평가일과 공시 컷오프, 실제치 최종 기간, forecast vintage, 순현금·주식수·환율 일자를 한 묶음으로 기록합니다. 실적 발표 후 자료는 이전 vintage에 소급 반영하지 않습니다. 세부 규칙은 [Valuation Vintage Policy](VALUATION_VINTAGE_POLICY.md)를 따릅니다.
+
 ## 투자 포인트
 
 1. HBM4가 HBM3E 다음의 이익 믹스를 이어가며, 서버 DRAM과 eSSD까지 AI 인프라 수요가 확대되고 있다.
