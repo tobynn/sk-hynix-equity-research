@@ -2,7 +2,7 @@
 
 ## 결론
 
-기준 주가 1,723,000원(2026-10-07)에서 SOTP 중심값은 2,139,000원이다. DCF 1,679,000원과 Cycle-adjusted PER 1,829,000원은 SOTP보다 보수적이며, RIM 997,000원은 HBM 초과 ROE가 빠르게 정상화되는 경우의 하방 점검값이다. 따라서 이 보고서는 수치를 평균내지 않고, HBM4 수율·CAPEX·현금전환을 확인해야 SOTP 결론의 신뢰도가 높아진다고 본다.
+기준 주가 1,723,000원(2026-10-07)에서 SOTP 중심값은 2,139,000원이다. DCF 1,679,000원과 Cycle-adjusted PER 1,829,000원은 SOTP보다 보수적이며, RIM 863,000원은 HBM 초과 ROE가 빠르게 정상화되는 경우의 하방 점검값이다. 따라서 이 보고서는 수치를 평균내지 않고, HBM4 수율·CAPEX·현금전환을 확인해야 SOTP 결론의 신뢰도가 높아진다고 본다.
 
 ## 실적 출발점
 
@@ -25,7 +25,7 @@
 | SOTP | 2,139,000원 | HBM/AI DRAM·범용 DRAM·NAND를 분리한 중심값 |
 | DCF | 1,679,000원 | CAPEX·운전자본·정상화 마진의 교차검증 |
 | Cycle-adjusted PER | 1,829,000원 | Micron 직접 앵커에 근거 조정을 반영 |
-| RIM | 997,000원 | 잔여이익이 빠르게 정상화되는 경우의 하방 |
+| RIM | 863,000원 | 잔여이익이 빠르게 정상화되는 경우의 하방 |
 
 PER의 Micron 기준배수와 요인별 Base/Bull/Bear 조정값은 현재 분석가 시나리오 입력이다. 역사적 peer-relative multiple로 보정되지 않았으므로 실증된 premium으로 해석하지 않는다. SOTP 부문별 EBIT와 배수도 회사가 공개하지 않은 분할을 포함하는 경우 분석가 가정으로 구분한다. 방법과 증거 기준은 [Peer Selection Scorecard](PEER_SELECTION_SCORECARD.md), [Valuation Framework](VALUATION_FRAMEWORK.md)에 정리했다.
 

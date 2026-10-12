@@ -4,10 +4,10 @@
 
 `SK_hynix_equity_research_final.xlsx`가 기준일 2026-10-07의 실제치·가정·결과를 연결한 최종 모델입니다. `Actuals & Sources`에서 출처와 기준일을 확인하고, `Forecast` → `HBM Build` → `SOTP`·`DCF`·`RIM`·`Peer PER` 순서로 읽으면 됩니다. `Audit`에는 핵심 연결 점검을 남겼습니다.
 
-- 최종 결과: SOTP 2,139,000원, DCF 1,679,000원, Peer PER 1,829,000원, RIM 997,000원
+- 최종 결과: SOTP 2,139,000원, DCF 1,679,000원, Peer PER 1,829,000원, RIM 862,000원
 - 노란색 셀: 분석가 가정 또는 갱신 입력값
 - `HBM Build`: HBM3E → HBM4 → HBM4E의 매출·마진 전환을 별도 점검
-- `Peer PER`: Micron 직접 경제성 앵커와 회사별 요인 브리지. 기존 x 조정은 역사적 peer-relative multiple로 보정되지 않은 시나리오 입력이며 확정 프리미엄이 아님
+- `Peer PER`: Micron 직접 앵커 6x/8x/9x bear/base/bull. 질적 프리미엄 요인은 역사적 calibration 전까지 target multiple에 가산하지 않음
 - `Actuals & Sources`: 평가일, 정보 컷오프, 최신 실제치, 전망 vintage, 주가·주식수 기준일을 기록
 - 기업 고유 분석: `research/COMPANY_SPECIFIC_FRAMEWORK.md`와 `research/VALUATION_VINTAGE_POLICY.md` 참조
 
