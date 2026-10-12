@@ -22,8 +22,8 @@ SK하이닉스의 HBM 세대 전환을 중심에 둔 기업분석 포트폴리�
 | 기준 주가 | 1,723,000원 | 2026-10-07 종가 |
 | SOTP 중심값 | 2,139,000원 | HBM/AI DRAM·범용 DRAM·NAND를 분리 평가 |
 | DCF 교차검증 | 1,679,000원 | CAPEX·운전자본을 반영한 현금흐름 가치 |
-| Cycle-adjusted PER | 1,829,000원 | Micron 직접 앵커 + 명시적 조정 |
-| RIM 하방 점검 | 997,000원 | ROE가 빠르게 정상화되는 보수적 경우 |
+| Cycle-adjusted PER | 1,829,000원 | Micron 직접 앵커 8배; 가산·차감 계수 미사용 |
+| RIM 하방 점검 | 857,000원 | 2026H2 잔여이익부터 시작; 이후 장부가치 롤포워드 |
 | 결론 | 조건부 검증 | SOTP는 상승 여지를 보이지만, DCF·RIM과의 차이가 커서 HBM4 수율·CAPEX·현금전환 확인이 필요 |
 
 숫자는 2026년 2분기까지의 공식 공시와 이후 전망 가정을 결합한 결과입니다. SOTP와 나머지 모델 사이 차이를 평균으로 숨기지 않았습니다. 민감도와 업데이트 조건은 [Investment Case](research/INVESTMENT_CASE.md)에 적었습니다.
@@ -73,7 +73,7 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 3. `data/templates/`의 CSV 스키마에 실제 데이터를 입력합니다.
 4. `model/SK_hynix_equity_research_final.xlsx`에서 Actuals·SOTP·DCF·RIM·Peer PER를 순서대로 검토합니다.
 5. `research/INVESTMENT_CASE.md`에서 가정 변경 시 다시 볼 조건을 확인합니다.
-6. `report/SK_hynix_equity_research_report.pdf`로 최종 보고서를 읽습니다.
+6. `report/SK_hynix_equity_research_report.pdf`는 이전 정적 snapshot이며, 최신 RIM 수정 결과는 `report/FINAL_REPORT.md`와 Excel을 봅니다.
 
 ## 품질 기준
 
@@ -86,6 +86,10 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 - 회사 전체와 사업부 peer를 섞지 않습니다.
 - 실적 추정치와 시장가격은 기준일을 고정합니다.
 
+## 논리 리뷰
+
+- [분석 논리 리뷰·모델 수정 및 남은 증거 게이트](research/ANALYSIS_REVIEW.md)
+
 ## 상태
 
 - [x] 2025 연간·2026년 2분기 공식 실적 반영
@@ -94,4 +98,6 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 - [x] Peer 선정 점수표와 제외 논리
 - [x] 최종 투자 포인트·리스크·업데이트 트리거
 - [x] PDF 보고서
+## Analysis review
 
+See [`research/ANALYSIS_REVIEW.md`](research/ANALYSIS_REVIEW.md) for the latest logical review, model corrections, and remaining evidence gates.
