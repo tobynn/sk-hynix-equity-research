@@ -73,7 +73,7 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 3. `data/templates/`의 CSV 스키마에 실제 데이터를 입력합니다.
 4. `model/SK_hynix_equity_research_final.xlsx`에서 Actuals·SOTP·DCF·RIM·Peer PER를 순서대로 검토합니다.
 5. `research/INVESTMENT_CASE.md`에서 가정 변경 시 다시 볼 조건을 확인합니다.
-6. `report/SK_hynix_equity_research_report.pdf`는 이전 정적 snapshot이며, 최신 RIM 수정 결과는 `report/FINAL_REPORT.md`와 Excel을 봅니다.
+6. `report/SK_hynix_equity_research_report.pdf`는 최신 `FINAL_REPORT.md`와 분석 리뷰를 반영한 재생성본입니다. 수치와 가정은 Excel 모델 및 보고서의 2026-10-07 valuation vintage에 맞춰 확인합니다. `python scripts/build_report_pdf.py --project "SK hynix" --vintage 2026-10-07 --output report/SK_hynix_equity_research_report.pdf`로 재현할 수 있습니다.
 
 ## 품질 기준
 
