@@ -12,7 +12,7 @@ SOTP는 2,139,000원을 가리키지만, DCF와 RIM은 CAPEX와 ROE 정상화에
 
 ## 1. 실적 출발점
 
-SK하이닉스는 FY2025에 매출 97.1조원, 영업이익 47.2조원, 순이익 42.9조원을 기록했다. 2026년 2분기에는 매출 79.3조원, 영업이익 60.5조원, 순이익 93.9조원을 기록했고, 6월 말 순현금은 69.4조원이었다. 회사는 HBM4 양산 출하, 약 10개 고객과의 장기 공급계약, 321단 NAND 생산 확대를 언급했다. [FY25 실적](https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/) · [2Q26 실적](https://news.skhynix.com/en/q2-2026-business-results/) · [반기보고서](https://opendart.fss.or.kr/xbrl/viewer/main.do?lang=en&rcpNo=20260814003509)
+SK하이닉스는 FY2025에 매출 97.1조원, 영업이익 47.2조원, 순이익 42.9조원을 기록했다. 2026년 2분기 발표자료에는 매출 79.3조원, 영업이익 60.5조원, 순이익 93.9조원이 기재돼 있으며, 회사는 해당 분기 수치를 잠정치라고 밝혔다. 이례적으로 높은 순이익률을 분석에서 임의로 수정하지 않았다. 6월 말 순현금은 회사 발표 기준 69.4조원이었다. 회사는 HBM4 양산 출하, 약 10개 고객과의 장기 공급계약, 321단 NAND 생산 확대를 언급했다. [FY25 실적](https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/) · [2Q26 실적](https://news.skhynix.com/en/q2-2026-business-results/) · [반기보고서](https://opendart.fss.or.kr/xbrl/viewer/main.do?lang=en&rcpNo=20260814003509)
 
 ## 2. HBM 세대별 이익이 만들어지는 단계
 
@@ -52,8 +52,8 @@ RIM은 2026-06-30 보고 자기자본 169.4조원을 기초로 둔다. FY2026E �
 
 ## 7. 출처
 
-1. SK hynix FY25 Financial Results, 2026-01-28.
-2. SK hynix 2Q26 Financial Results, 2026-07-29.
-3. SK hynix Half-year Report, 2026-08-14, DART.
-4. SK hynix 000660 price history, 2026-10-07 close, StockAnalysis.
-5. Micron Technology, FY26 results materials and events page.
+1. [SK hynix FY25 Financial Results](https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/), 2026-01-28.
+2. [SK hynix 2Q26 Financial Results](https://news.skhynix.com/en/q2-2026-business-results/), 2026-07-29.
+3. [SK hynix Half-year Report](https://opendart.fss.or.kr/xbrl/viewer/main.do?lang=en&rcpNo=20260814003509), 2026-08-14, DART.
+4. [SK hynix 000660 price history](https://stockanalysis.com/quote/krx/000660/history/), 2026-10-07 close.
+5. [Micron Investor Relations](https://investors.micron.com/), FY26 results materials and events page.
