@@ -1,0 +1,7 @@
+company,ticker,role,business_overlap,inclusion_status,reason,valuation_basis,as_of_date,source
+Micron,MU,Primary anchor,DRAM and NAND,Included,Closest listed memory cycle comparator,Cycle-adjusted forward PER,,
+Samsung Electronics,005930 KS,Secondary reference,DRAM HBM and NAND,Reference only,Conglomerate discount makes company PER unsuitable,Memory segment profitability and implied value,,
+Kioxia,285A JP,NAND check,NAND,Included for NAND,NAND cycle and margin comparator,EV EBIT or segment multiple,,
+SanDisk,SNDK,NAND check,NAND,Included for NAND,NAND market cross-check,EV EBIT or PER cross-check,,
+NVIDIA,NVDA,AI ecosystem,GPU and AI platforms,Excluded,Economics and capital intensity are not comparable,Qualitative only,,
+

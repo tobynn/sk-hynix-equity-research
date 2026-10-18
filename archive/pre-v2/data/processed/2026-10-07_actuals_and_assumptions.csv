@@ -1,0 +1,15 @@
+as_of_date,category,metric,period,value,unit,source,notes
+2026-10-07,Actual,Revenue,FY2025,97146.7,KRW bn,https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/,Consolidated K-IFRS
+2026-10-07,Actual,Operating profit,FY2025,47206.3,KRW bn,https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/,Consolidated K-IFRS
+2026-10-07,Actual,Net income,FY2025,42947.9,KRW bn,https://news.skhynix.com/en/sk-hynix-announces-fy25-financial-results/,Consolidated K-IFRS
+2026-10-07,Actual,Revenue,2Q2026,79318.7,KRW bn,https://news.skhynix.com/en/q2-2026-business-results/,Consolidated K-IFRS
+2026-10-07,Actual,Operating profit,2Q2026,60542.6,KRW bn,https://news.skhynix.com/en/q2-2026-business-results/,Consolidated K-IFRS
+2026-10-07,Actual,Net income,2Q2026,93922.6,KRW bn,https://news.skhynix.com/en/q2-2026-business-results/,Consolidated K-IFRS
+2026-10-07,Actual,Cash and cash equivalents,2Q2026,88000,KRW bn,https://news.skhynix.com/en/q2-2026-business-results/,Company disclosure rounded figure
+2026-10-07,Actual,Total debt,2Q2026,18600,KRW bn,https://news.skhynix.com/en/q2-2026-business-results/,Company disclosure rounded figure
+2026-10-07,Actual,Net cash,2Q2026,69400,KRW bn,https://news.skhynix.com/en/q2-2026-business-results/,Company disclosure rounded figure
+2026-10-07,Market,Closing share price,2026-10-07,1723000,KRW/share,https://stockanalysis.com/quote/krx/000660/history/,Closing price
+2026-10-07,Forecast,Revenue,2026E,265000,KRW bn,Analyst assumption,Base case
+2026-10-07,Forecast,Revenue,2027E,288000,KRW bn,Analyst assumption,Base case
+2026-10-07,Forecast,Net income,2026E,190000,KRW bn,Analyst assumption,Base case
+2026-10-07,Forecast,Net income,2027E,160000,KRW bn,Analyst assumption,Base case

@@ -1,0 +1,62 @@
+{
+  "company": "SK하이닉스",
+  "version": "2026-10-18",
+  "scenario_checks": [
+    {
+      "case": "Bear",
+      "metric": "dcf_price",
+      "excel": 776339.279652131,
+      "python": 776339.2796521309
+    },
+    {
+      "case": "Bear",
+      "metric": "per_price",
+      "excel": 681211.9098488578,
+      "python": 681211.9098488578
+    },
+    {
+      "case": "Bear",
+      "metric": "rim_price",
+      "excel": 486623.9074725204,
+      "python": 486623.9074725204
+    },
+    {
+      "case": "Base",
+      "metric": "dcf_price",
+      "excel": 1520033.211148274,
+      "python": 1520033.211148274
+    },
+    {
+      "case": "Base",
+      "metric": "per_price",
+      "excel": 1266254.8497852066,
+      "python": 1266254.8497852066
+    },
+    {
+      "case": "Base",
+      "metric": "rim_price",
+      "excel": 902077.731724501,
+      "python": 902077.731724501
+    },
+    {
+      "case": "Bull",
+      "metric": "dcf_price",
+      "excel": 2287660.463494219,
+      "python": 2287660.463494219
+    },
+    {
+      "case": "Bull",
+      "metric": "per_price",
+      "excel": 1852420.0331990202,
+      "python": 1852420.0331990202
+    },
+    {
+      "case": "Bull",
+      "metric": "rim_price",
+      "excel": 1388340.3379309524,
+      "python": 1388340.3379309524
+    }
+  ],
+  "formula_errors": 0,
+  "rim_ddm_error": 2.3283064365386963e-10
+}

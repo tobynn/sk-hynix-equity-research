@@ -1,149 +1,72 @@
 from pathlib import Path
-import re, html
+from urllib.request import urlopen
+import argparse,re,html,json,hashlib
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_LEFT, TA_CENTER
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether
-
+from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Table,TableStyle,PageBreak,KeepTogether
 ROOT=Path(__file__).resolve().parents[1]
-FONT=ROOT/'report/fonts'
-REG=FONT/'NanumGothic-Regular.ttf'; BOLD=FONT/'NanumGothic-Bold.ttf'
-pdfmetrics.registerFont(TTFont('Nanum',str(REG)))
-pdfmetrics.registerFont(TTFont('Nanum-Bold',str(BOLD)))
-pdfmetrics.registerFontFamily('Nanum',normal='Nanum',bold='Nanum-Bold',italic='Nanum',boldItalic='Nanum-Bold')
-
-INK=colors.HexColor('#152238'); BLUE=colors.HexColor('#173B63'); TEAL=colors.HexColor('#1A817A'); PALE=colors.HexColor('#EAF1F7'); GRID=colors.HexColor('#D6E0E8')
-styles=getSampleStyleSheet()
-styles.add(ParagraphStyle(name='TitleKR',fontName='Nanum-Bold',fontSize=23,leading=30,textColor=BLUE,spaceAfter=9,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='H2KR',fontName='Nanum-Bold',fontSize=15,leading=21,textColor=BLUE,spaceBefore=11,spaceAfter=6,keepWithNext=True,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='H3KR',fontName='Nanum-Bold',fontSize=11.5,leading=16,textColor=TEAL,spaceBefore=8,spaceAfter=4,keepWithNext=True,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='BodyKR',fontName='Nanum',fontSize=9.2,leading=14,textColor=INK,spaceAfter=6,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='BulletKR',parent=styles['BodyKR'],leftIndent=12,firstLineIndent=-8,bulletIndent=0,spaceAfter=4))
-styles.add(ParagraphStyle(name='SmallKR',fontName='Nanum',fontSize=7.1,leading=10,textColor=INK,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='TableHeadKR',fontName='Nanum-Bold',fontSize=7.2,leading=10,textColor=colors.white,alignment=TA_LEFT,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='TableKR',fontName='Nanum',fontSize=6.5,leading=8.4,textColor=INK,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='QuoteKR',fontName='Nanum-Bold',fontSize=9.2,leading=14,textColor=BLUE,leftIndent=10,rightIndent=8,spaceBefore=3,spaceAfter=8,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='KickerKR',fontName='Nanum-Bold',fontSize=8,leading=11,textColor=TEAL,spaceAfter=7,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='CoverTitleKR',fontName='Nanum-Bold',fontSize=27,leading=36,textColor=BLUE,spaceAfter=10,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='CoverSubKR',fontName='Nanum',fontSize=11,leading=17,textColor=INK,spaceAfter=8,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='CoverLabelKR',fontName='Nanum-Bold',fontSize=8,leading=11,textColor=TEAL,wordWrap='CJK'))
-styles.add(ParagraphStyle(name='CoverValueKR',fontName='Nanum-Bold',fontSize=12,leading=17,textColor=BLUE,wordWrap='CJK'))
-
-
+parser=argparse.ArgumentParser();parser.add_argument('--font-dir',type=Path);args=parser.parse_args()
+p=json.loads((ROOT/'data/research_inputs.json').read_text());result=json.loads((ROOT/'model/research_results.json').read_text())
+fonts=args.font_dir or Path.home()/'.cache/equity-research-fonts';fonts.mkdir(exist_ok=True,parents=True)
+for weight in ['Regular','Bold']:
+ f=fonts/f'NanumGothic-{weight}.ttf'
+ if not f.exists():f.write_bytes(urlopen(f'https://raw.githubusercontent.com/google/fonts/main/ofl/nanumgothic/NanumGothic-{weight}.ttf').read())
+ pdfmetrics.registerFont(TTFont('KR'+('B' if weight=='Bold' else ''),str(f)))
+pdfmetrics.registerFontFamily('KR',normal='KR',bold='KRB',italic='KR',boldItalic='KRB')
+ink=colors.HexColor('#202C3B');accent=colors.HexColor(p['color']);pale=colors.HexColor('#F0F4F8');grid=colors.HexColor('#DCE4EB')
+styles={
+ 'body':ParagraphStyle('body',fontName='KR',fontSize=9.4,leading=15.7,spaceAfter=8,wordWrap='CJK',textColor=ink),
+ 'h1':ParagraphStyle('h1',fontName='KRB',fontSize=23,leading=33,spaceAfter=12,wordWrap='CJK',textColor=accent),
+ 'h2':ParagraphStyle('h2',fontName='KRB',fontSize=14,leading=21,spaceBefore=15,spaceAfter=9,keepWithNext=True,wordWrap='CJK',textColor=accent),
+ 'h3':ParagraphStyle('h3',fontName='KRB',fontSize=11,leading=17,spaceBefore=10,spaceAfter=7,keepWithNext=True,wordWrap='CJK',textColor=accent),
+ 'cell':ParagraphStyle('cell',fontName='KR',fontSize=8,leading=11.8,wordWrap='CJK',textColor=ink),
+ 'head':ParagraphStyle('head',fontName='KRB',fontSize=8,leading=12,wordWrap='CJK',textColor=colors.white),
+ 'small':ParagraphStyle('small',fontName='KR',fontSize=8,leading=12.5,spaceAfter=6,wordWrap='CJK',textColor=colors.HexColor('#596A7B'))}
 def inline(s):
-    s=s.strip()
-    s=s.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
-    def render_link(match):
-        label, target=match.group(1),match.group(2)
-        return f'<link href="{target}" color="#1A817A">{label}</link>' if target.startswith('https://') else label
-    s=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',render_link,s)
-    s=re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',s)
-    s=re.sub(r'`([^`]+)`',r'<font name="Nanum-Bold">\1</font>',s)
-    s=s.replace('—','-').replace('–','-').replace('−','-')
-    return s
-
-def table_data(lines):
-    rows=[]
-    for ln in lines:
-        cells=[x.strip() for x in ln.strip().strip('|').split('|')]
-        if all(re.fullmatch(r':?-{3,}:?',c.replace(' ','')) for c in cells): continue
-        rows.append(cells)
-    n=max(map(len,rows))
-    rows=[r+['']*(n-len(r)) for r in rows]
-    weights=[]
-    for j in range(n):
-        mx=max([len(re.sub(r'\[[^]]+\]\([^)]+\)','',r[j])) for r in rows] or [5])
-        weights.append(max(1,min(mx,36)))
-    total=sum(weights)
-    widths=[(doc_width* (w/total)) for w in weights]
-    data=[]
-    for ri,row in enumerate(rows):
-        data.append([Paragraph(inline(x),styles['TableHeadKR'] if ri==0 else styles['TableKR']) for x in row])
-    t=Table(data,colWidths=widths,repeatRows=1,hAlign='LEFT',splitByRow=1)
-    t.setStyle(TableStyle([
-        ('BACKGROUND',(0,0),(-1,0),BLUE),('TEXTCOLOR',(0,0),(-1,0),colors.white),
-        ('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('GRID',(0,0),(-1,-1),0.35,GRID),
-        ('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5),
-        ('TOPPADDING',(0,0),(-1,-1),4),('BOTTOMPADDING',(0,0),(-1,-1),4),
-    ]))
-    return t
-
-def build_doc(out, md_files, project, cutoff):
-    global doc_width
-    doc=SimpleDocTemplate(str(out),pagesize=A4,rightMargin=17*mm,leftMargin=17*mm,topMargin=18*mm,bottomMargin=17*mm,title=f'{project} Equity Research',author='Equity Research Portfolio')
-    doc_width=A4[0]-34*mm
-    story=[Spacer(1,20*mm),Paragraph('EQUITY RESEARCH  /  VALUATION NOTE',styles['KickerKR']),
-           Paragraph('SK hynix<br/>기업가치 분석',styles['CoverTitleKR']),
-           Paragraph(f'HBM 세대 전환과 메모리 사이클을 분리해 본 밸류에이션<br/>기준일 {cutoff} | KRW 기준',styles['CoverSubKR']),
-           Spacer(1,10*mm)]
-    thesis=Table([[Paragraph('<b>핵심 판단</b><br/><br/>SOTP 중심값은 주가 위에 있지만, DCF와 RIM은 현금 투자 부담과 ROE 정상화에 민감합니다. HBM4 수율·고객 인증·현금전환이 확인될 때 SOTP의 신뢰도를 높일 수 있습니다.',styles['QuoteKR'])]],colWidths=[doc_width])
-    thesis.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),PALE),('BOX',(0,0),(-1,-1),0.7,GRID),('LEFTPADDING',(0,0),(-1,-1),12),('RIGHTPADDING',(0,0),(-1,-1),12),('TOPPADDING',(0,0),(-1,-1),11),('BOTTOMPADDING',(0,0),(-1,-1),9)]))
-    story += [thesis,Spacer(1,10*mm)]
-    rows=[
-        [Paragraph('VALUATION',styles['TableHeadKR']),Paragraph('BASE VALUE',styles['TableHeadKR']),Paragraph('ROLE',styles['TableHeadKR'])],
-        [Paragraph('SOTP',styles['TableKR']),Paragraph('2,139,000원/주',styles['CoverValueKR']),Paragraph('중심 가치',styles['TableKR'])],
-        [Paragraph('DCF',styles['TableKR']),Paragraph('1,679,000원/주',styles['CoverValueKR']),Paragraph('현금흐름 교차검증',styles['TableKR'])],
-        [Paragraph('Cycle PER',styles['TableKR']),Paragraph('1,829,000원/주',styles['CoverValueKR']),Paragraph('Micron 8x anchor 민감도',styles['TableKR'])],
-        [Paragraph('RIM',styles['TableKR']),Paragraph('862,520원/주',styles['CoverValueKR']),Paragraph('초과이익 하방 점검',styles['TableKR'])],
-        [Paragraph('기준 주가',styles['TableKR']),Paragraph('1,723,000원',styles['CoverValueKR']),Paragraph('2026-10-07 종가',styles['TableKR'])],
-    ]
-    summary=Table(rows,colWidths=[doc_width*.23,doc_width*.33,doc_width*.44],repeatRows=1,hAlign='LEFT')
-    summary.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),BLUE),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('GRID',(0,0),(-1,-1),0.4,GRID),('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7)]))
-    story += [summary,Spacer(1,9*mm),Paragraph('분석 순서',styles['H3KR']),Paragraph('HBM 세대별 상업화 → 제품군별 SOTP → DCF·RIM·cycle PER 교차검증',styles['CoverSubKR']),Spacer(1,7*mm),Paragraph('교육·포트폴리오 목적의 기업 분석입니다. 모든 전망과 가치 산출은 입력 가정에 민감하며 투자 권유가 아닙니다.',styles['SmallKR']),PageBreak()]
-    for fi,file in enumerate(md_files):
-        if fi: story.append(PageBreak())
-        text=file.read_text(encoding='utf-8')
-        lines=text.splitlines(); i=0; first_h1=True
-        while i<len(lines):
-            line=lines[i].rstrip()
-            if not line.strip() or line.strip()=='---': i+=1; continue
-            if line.lstrip().startswith('|'):
-                tab=[]
-                while i<len(lines) and lines[i].lstrip().startswith('|'):
-                    tab.append(lines[i]); i+=1
-                story += [Spacer(1,3),table_data(tab),Spacer(1,6)]; continue
-            if line.startswith('# '):
-                story.append(Paragraph(inline(line[2:]),styles['TitleKR'] if fi==0 else styles['H2KR'])); first_h1=False; i+=1; continue
-            if line.startswith('## '): story.append(Paragraph(inline(line[3:]),styles['H2KR'])); i+=1; continue
-            if line.startswith('### '): story.append(Paragraph(inline(line[4:]),styles['H3KR'])); i+=1; continue
-            if line.startswith('>'):
-                story.append(Paragraph(inline(line.lstrip('> ')),styles['QuoteKR'])); i+=1; continue
-            if re.match(r'^\s*[-*] ',line):
-                story.append(Paragraph('• '+inline(re.sub(r'^\s*[-*] ','',line)),styles['BulletKR'])); i+=1; continue
-            if re.match(r'^\s*\d+\. ',line):
-                story.append(Paragraph(inline(line.strip()),styles['BulletKR'])); i+=1; continue
-            if line.startswith('```'):
-                i+=1
-                while i<len(lines) and not lines[i].startswith('```'): i+=1
-                i+=1; continue
-            # Join wrapped markdown lines until a block starts.
-            parts=[line.strip()]; i+=1
-            while i<len(lines) and lines[i].strip() and not lines[i].startswith(('#','>','|','```')) and not re.match(r'^\s*[-*] |^\s*\d+\. ',lines[i]):
-                parts.append(lines[i].strip()); i+=1
-            story.append(Paragraph(inline(' '.join(parts)),styles['BodyKR']))
-    def page(canvas,doc):
-        canvas.saveState(); w,h=A4
-        canvas.setStrokeColor(GRID); canvas.setLineWidth(.5); canvas.line(17*mm,13*mm,w-17*mm,13*mm)
-        canvas.setFont('Nanum',7); canvas.setFillColor(colors.HexColor('#5C6B79'))
-        canvas.drawString(17*mm,8.2*mm,f'{project} | Valuation vintage {cutoff}')
-        canvas.drawRightString(w-17*mm,8.2*mm,f'{doc.page}')
-        canvas.restoreState()
-    doc.build(story,onFirstPage=page,onLaterPages=page)
-
-import argparse
-parser=argparse.ArgumentParser(description='Build the portfolio PDF from the Markdown report and methodology notes.')
-parser.add_argument('--project',required=True,help='Company display name')
-parser.add_argument('--vintage',required=True,help='Valuation cutoff date')
-parser.add_argument('--output',required=True,help='PDF output path, relative to repository root')
-args=parser.parse_args()
-md_files=[ROOT/'report/FINAL_REPORT.md']
-for p in [ROOT/'report/METHODOLOGY_APPENDIX.md']:
-    if p.exists(): md_files.append(p)
-out=ROOT/args.output
-out.parent.mkdir(parents=True,exist_ok=True)
-build_doc(out,md_files,args.project,args.vintage)
-print(f'Generated {out}')
+ s=html.escape(s.replace('−','-').replace('–','-').replace('—','-'))
+ def link(m):
+  label,url=m.groups();return f'<link href="{url}" color="{p["color"]}">{label}</link>' if url.startswith('https://') else label
+ s=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',link,s)
+ s=re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',s);s=re.sub(r'`([^`]+)`',r'<b>\1</b>',s)
+ return s
+W=A4[0]-36*mm
+def table(lines):
+ rows=[]
+ for l in lines:
+  cells=[x.strip() for x in l.strip().strip('|').split('|')]
+  if all(re.fullmatch(r':?-{3,}:?',x) for x in cells):continue
+  rows.append(cells)
+ n=len(rows[0]);weights=[max(8,min(36,max(len(re.sub(r'\[[^]]+\]\([^)]+\)','',r[i])) for r in rows))) for i in range(n)]
+ if n>=6:weights=[22]+[16]*(n-1)
+ widths=[W*w/sum(weights) for w in weights]
+ tab=Table([[Paragraph(inline(c),styles['head' if j==0 else 'cell']) for c in r] for j,r in enumerate(rows)],colWidths=widths,repeatRows=1,hAlign='LEFT')
+ tab.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),accent),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,pale]),('LINEBELOW',(0,0),(-1,0),.5,accent),('LINEBELOW',(0,1),(-1,-1),.25,grid),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),6),('RIGHTPADDING',(0,0),(-1,-1),6),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),6)]))
+ return tab
+out=ROOT/'report/Equity_Research_Report.pdf';out.parent.mkdir(exist_ok=True)
+story=[Spacer(1,25*mm),Paragraph('EQUITY RESEARCH / 2026.10.18',styles['small']),Paragraph(f'{p["name"]}<br/>기업가치 분석',styles['h1']),Paragraph(inline(p['subtitle']),styles['h2']),Spacer(1,12*mm),Paragraph(inline(p['thesis']),styles['body']),Spacer(1,8*mm)]
+story.append(table(['|방법|Bear|Base|Bull|','|---|---|---|---|']+[f'|{name}|'+ '|'.join(f'{round(result[c][key]/100)*100:,.0f}원' for c in ['Bear','Base','Bull'])+'|' for name,key in [('DCF','dcf_price'),('PER','per_price'),('RIM','rim_price')]]))
+story.extend([Spacer(1,8*mm),Paragraph('평가 대상 2026년 말 / 실제 재무제표 2026년 6월 말',styles['body']),Paragraph('전망은 분석자 시나리오입니다. 참고 주가는 NAVER 일별시세이며 거래소 공식 종가와 미대사 상태입니다. 시장 배수를 임의로 만들지 않았으며 각 방법을 평균하지 않았습니다.',styles['small']),Spacer(1,8*mm),Paragraph('산업 · 기업 · 재무 · 전망 · 비교기업 · PER · RIM · DCF · 민감도 · 투자위험',styles['small']),PageBreak()])
+lines=(ROOT/'report/FINAL_REPORT.md').read_text().splitlines();i=0
+while i<len(lines):
+ l=lines[i].strip();i+=1
+ if not l:continue
+ if l.startswith('|'):
+  block=[l]
+  while i<len(lines) and lines[i].strip().startswith('|'):block.append(lines[i].strip());i+=1
+  story.extend([table(block),Spacer(1,7)]);continue
+ if l.startswith('# '):story.append(Paragraph(inline(l[2:]),styles['h1']));continue
+ if l.startswith('## '):story.append(Paragraph(inline(l[3:]),styles['h2']));continue
+ if l.startswith('### '):story.append(Paragraph(inline(l[4:]),styles['h3']));continue
+ if l.startswith('> '):story.append(Paragraph(inline(l[2:]),styles['small']));continue
+ if l.startswith('- '):l='• '+l[2:]
+ story.append(Paragraph(inline(l),styles['body']))
+def footer(c,d):
+ c.saveState();c.setStrokeColor(grid);c.line(18*mm,15*mm,A4[0]-18*mm,15*mm);c.setFillColor(accent);c.setFont('KR',7)
+ c.drawString(18*mm,10*mm,f'{p["english"]} / 2026.10.18 / 2026 연말E');c.drawRightString(A4[0]-18*mm,10*mm,str(d.page));c.restoreState()
+doc=SimpleDocTemplate(str(out),pagesize=A4,leftMargin=18*mm,rightMargin=18*mm,topMargin=18*mm,bottomMargin=22*mm,title=f'{p["name"]} Equity Research 2026-10-18',author='Equity Research Portfolio')
+doc.build(story,onFirstPage=footer,onLaterPages=footer)
+print(out)

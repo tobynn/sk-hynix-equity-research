@@ -1,0 +1,6 @@
+segment,forecast_year,ebit_krw_bn,selected_multiple,valuation_basis,source,as_of_date,notes
+HBM and AI DRAM,2027,12000,12.0,EV EBIT,ILLUSTRATIVE,,Replace with sourced input
+Conventional DRAM,2027,6000,7.0,EV EBIT,ILLUSTRATIVE,,Replace with sourced input
+NAND and Solidigm,2027,1500,6.0,EV EBIT,ILLUSTRATIVE,,Replace with sourced input
+Other and adjustments,2027,300,5.0,EV EBIT,ILLUSTRATIVE,,Replace with sourced input
+
