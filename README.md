@@ -4,6 +4,16 @@ SK하이닉스의 HBM 세대 전환을 중심에 둔 기업분석 포트폴리�
 
 > 기준일: 2026-10-07 종가. 모든 밸류에이션은 교육·포트폴리오 목적의 분석이며 투자 권유가 아닙니다. 모델의 가정과 결과는 `model/SK_hynix_equity_research_final.xlsx`와 `report/`에서 확인할 수 있습니다.
 
+## 바로 보기
+
+| 파일 | 내용 |
+|---|---|
+| [최종 분석 보고서 (PDF)](report/SK_hynix_equity_research_report.pdf) | 투자 논지, 핵심 가정, 모델 결과, 위험과 갱신 조건 |
+| [통합 밸류에이션 모델 (Excel)](model/SK_hynix_equity_research_final.xlsx) | Actuals & Sources, Forecast, HBM Build, SOTP, DCF, RIM, Peer PER, Audit |
+| [분석 시작 가이드](START_HERE_KR.md) | 파일 읽는 순서와 실적 업데이트 절차 |
+
+표시된 적정가치는 분석가 시나리오입니다. 특히 SOTP의 사업부 이익·배수, DCF의 장기 현금흐름, RIM의 장기 ROE, PER의 Micron 8배 Base anchor는 가정에 민감합니다. 추정치를 확정 실적이나 확정 목표주가로 해석하지 않도록 각 모델의 출처·단위·기준일을 함께 확인해 주세요.
+
 ## 분석 프레임워크
 
 | 단계 | 핵심 질문 | 주 모델 | 역할 |
@@ -60,7 +70,7 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 ├── figures/                 # 차트 및 보고서용 이미지
 ├── model/                   # 엑셀 밸류에이션 모델
 ├── notebooks/               # 재현 가능한 분석 노트북
-├── report/                  # 최종 보고서 골격
+├── report/                  # 최종 PDF와 편집 가능한 보고서 원고
 ├── research/                # 방법론·peer·출처 정책
 ├── scripts/                 # 모델 생성·자동화 스크립트
 └── src/                     # 입력 검증 코드
@@ -73,7 +83,7 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 3. `data/templates/`의 CSV 스키마에 실제 데이터를 입력합니다.
 4. `model/SK_hynix_equity_research_final.xlsx`에서 Actuals·SOTP·DCF·RIM·Peer PER를 순서대로 검토합니다.
 5. `research/INVESTMENT_CASE.md`에서 가정 변경 시 다시 볼 조건을 확인합니다.
-6. `report/SK_hynix_equity_research_report.pdf`는 최신 `FINAL_REPORT.md`와 분석 리뷰를 반영한 재생성본입니다. 수치와 가정은 Excel 모델 및 보고서의 2026-10-07 valuation vintage에 맞춰 확인합니다. `python scripts/build_report_pdf.py --project "SK hynix" --vintage 2026-10-07 --output report/SK_hynix_equity_research_report.pdf`로 재현할 수 있습니다.
+6. PDF는 `report/FINAL_REPORT.md`에서 다시 만들 수 있습니다. 남은 검증 과제는 `research/ANALYSIS_REVIEW.md`에서 확인합니다. 현재 평가 vintage는 2026-10-07입니다. `python scripts/build_report_pdf.py --project "SK hynix" --vintage 2026-10-07 --output report/SK_hynix_equity_research_report.pdf`로 재현할 수 있습니다.
 
 ## 품질 기준
 
@@ -98,6 +108,8 @@ Micron의 배수를 그대로 적용하지도 않습니다. 먼저 완전한 메
 - [x] Peer 선정 점수표와 제외 논리
 - [x] 최종 투자 포인트·리스크·업데이트 트리거
 - [x] PDF 보고서
+
+실적 수치는 2026-07-29 회사 2Q26 발표 자료와 반기보고서를 기준으로 확인했습니다. 발표자료의 2Q26 순이익 93.9226조원은 회사 표기 그대로 반영했습니다. 회사가 실적 발표에서 잠정치라고 명시했으므로 반기보고서와의 조정 여부를 다음 업데이트 때 다시 대조합니다. 2026-10-07 이후의 주가·전망치는 현재 가치 결과에 반영되지 않았습니다.
 ## Analysis review
 
 See [`research/ANALYSIS_REVIEW.md`](research/ANALYSIS_REVIEW.md) for the latest logical review, model corrections, and remaining evidence gates.
