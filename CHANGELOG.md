@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 — 2026-10-18
+
+- Added a cover page and compact valuation summary to the downloadable PDF.
+- Refreshed the public-facing README with direct links to the report and integrated workbook.
+- Updated the review log after checking the 2Q26 figures against the company release; remaining evidence gates are stated explicitly.
+- Clarified that the 2026-10-07 value set is a scenario vintage and that the 2Q26 release reports preliminary figures.
+
 ## 1.1.0 — 2026-10-12
 
 - Added a dated valuation vintage policy for price, information cutoff, actuals, forecasts, cash, FX and share count.
