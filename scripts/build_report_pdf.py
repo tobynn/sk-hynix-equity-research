@@ -27,15 +27,23 @@ styles.add(ParagraphStyle(name='SmallKR',fontName='Nanum',fontSize=7.1,leading=1
 styles.add(ParagraphStyle(name='TableHeadKR',fontName='Nanum-Bold',fontSize=7.2,leading=10,textColor=colors.white,alignment=TA_LEFT,wordWrap='CJK'))
 styles.add(ParagraphStyle(name='TableKR',fontName='Nanum',fontSize=6.5,leading=8.4,textColor=INK,wordWrap='CJK'))
 styles.add(ParagraphStyle(name='QuoteKR',fontName='Nanum-Bold',fontSize=9.2,leading=14,textColor=BLUE,leftIndent=10,rightIndent=8,spaceBefore=3,spaceAfter=8,wordWrap='CJK'))
+styles.add(ParagraphStyle(name='KickerKR',fontName='Nanum-Bold',fontSize=8,leading=11,textColor=TEAL,spaceAfter=7,wordWrap='CJK'))
+styles.add(ParagraphStyle(name='CoverTitleKR',fontName='Nanum-Bold',fontSize=27,leading=36,textColor=BLUE,spaceAfter=10,wordWrap='CJK'))
+styles.add(ParagraphStyle(name='CoverSubKR',fontName='Nanum',fontSize=11,leading=17,textColor=INK,spaceAfter=8,wordWrap='CJK'))
+styles.add(ParagraphStyle(name='CoverLabelKR',fontName='Nanum-Bold',fontSize=8,leading=11,textColor=TEAL,wordWrap='CJK'))
+styles.add(ParagraphStyle(name='CoverValueKR',fontName='Nanum-Bold',fontSize=12,leading=17,textColor=BLUE,wordWrap='CJK'))
 
 
 def inline(s):
     s=s.strip()
     s=s.replace('&','&amp;').replace('<','&lt;').replace('>','&gt;')
-    s=re.sub(r'\[([^\]]+)\]\((https?://[^)]+)\)',r'<link href="\2" color="#1A817A">\1</link>',s)
+    def render_link(match):
+        label, target=match.group(1),match.group(2)
+        return f'<link href="{target}" color="#1A817A">{label}</link>' if target.startswith('https://') else label
+    s=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',render_link,s)
     s=re.sub(r'\*\*(.+?)\*\*',r'<b>\1</b>',s)
     s=re.sub(r'`([^`]+)`',r'<font name="Nanum-Bold">\1</font>',s)
-    s=s.replace('—','-').replace('–','-').replace('−','-').replace('·',' | ')
+    s=s.replace('—','-').replace('–','-').replace('−','-')
     return s
 
 def table_data(lines):
@@ -68,7 +76,24 @@ def build_doc(out, md_files, project, cutoff):
     global doc_width
     doc=SimpleDocTemplate(str(out),pagesize=A4,rightMargin=17*mm,leftMargin=17*mm,topMargin=18*mm,bottomMargin=17*mm,title=f'{project} Equity Research',author='Equity Research Portfolio')
     doc_width=A4[0]-34*mm
-    story=[]
+    story=[Spacer(1,20*mm),Paragraph('EQUITY RESEARCH  /  VALUATION NOTE',styles['KickerKR']),
+           Paragraph('SK hynix<br/>기업가치 분석',styles['CoverTitleKR']),
+           Paragraph(f'HBM 세대 전환과 메모리 사이클을 분리해 본 밸류에이션<br/>기준일 {cutoff} | KRW 기준',styles['CoverSubKR']),
+           Spacer(1,10*mm)]
+    thesis=Table([[Paragraph('<b>핵심 판단</b><br/><br/>SOTP 중심값은 주가 위에 있지만, DCF와 RIM은 현금 투자 부담과 ROE 정상화에 민감합니다. HBM4 수율·고객 인증·현금전환이 확인될 때 SOTP의 신뢰도를 높일 수 있습니다.',styles['QuoteKR'])]],colWidths=[doc_width])
+    thesis.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),PALE),('BOX',(0,0),(-1,-1),0.7,GRID),('LEFTPADDING',(0,0),(-1,-1),12),('RIGHTPADDING',(0,0),(-1,-1),12),('TOPPADDING',(0,0),(-1,-1),11),('BOTTOMPADDING',(0,0),(-1,-1),9)]))
+    story += [thesis,Spacer(1,10*mm)]
+    rows=[
+        [Paragraph('VALUATION',styles['TableHeadKR']),Paragraph('BASE VALUE',styles['TableHeadKR']),Paragraph('ROLE',styles['TableHeadKR'])],
+        [Paragraph('SOTP',styles['TableKR']),Paragraph('2,139,000원/주',styles['CoverValueKR']),Paragraph('중심 가치',styles['TableKR'])],
+        [Paragraph('DCF',styles['TableKR']),Paragraph('1,679,000원/주',styles['CoverValueKR']),Paragraph('현금흐름 교차검증',styles['TableKR'])],
+        [Paragraph('Cycle PER',styles['TableKR']),Paragraph('1,829,000원/주',styles['CoverValueKR']),Paragraph('Micron 8x anchor 민감도',styles['TableKR'])],
+        [Paragraph('RIM',styles['TableKR']),Paragraph('862,520원/주',styles['CoverValueKR']),Paragraph('초과이익 하방 점검',styles['TableKR'])],
+        [Paragraph('기준 주가',styles['TableKR']),Paragraph('1,723,000원',styles['CoverValueKR']),Paragraph('2026-10-07 종가',styles['TableKR'])],
+    ]
+    summary=Table(rows,colWidths=[doc_width*.23,doc_width*.33,doc_width*.44],repeatRows=1,hAlign='LEFT')
+    summary.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),BLUE),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,PALE]),('GRID',(0,0),(-1,-1),0.4,GRID),('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LEFTPADDING',(0,0),(-1,-1),8),('RIGHTPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7)]))
+    story += [summary,Spacer(1,9*mm),Paragraph('분석 순서',styles['H3KR']),Paragraph('HBM 세대별 상업화 → 제품군별 SOTP → DCF·RIM·cycle PER 교차검증',styles['CoverSubKR']),Spacer(1,7*mm),Paragraph('교육·포트폴리오 목적의 기업 분석입니다. 모든 전망과 가치 산출은 입력 가정에 민감하며 투자 권유가 아닙니다.',styles['SmallKR']),PageBreak()]
     for fi,file in enumerate(md_files):
         if fi: story.append(PageBreak())
         text=file.read_text(encoding='utf-8')
@@ -116,7 +141,7 @@ parser.add_argument('--vintage',required=True,help='Valuation cutoff date')
 parser.add_argument('--output',required=True,help='PDF output path, relative to repository root')
 args=parser.parse_args()
 md_files=[ROOT/'report/FINAL_REPORT.md']
-for p in [ROOT/'report/METHODOLOGY_APPENDIX.md',ROOT/'research/ANALYSIS_REVIEW.md']:
+for p in [ROOT/'report/METHODOLOGY_APPENDIX.md']:
     if p.exists(): md_files.append(p)
 out=ROOT/args.output
 out.parent.mkdir(parents=True,exist_ok=True)
