@@ -1,0 +1,9 @@
+﻿period,metric,value,unit,status,source
+q3,revenue,104615.483,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+q3,ebit,83333.818,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+q3,group_ni,39775.593,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+q3,parent_ni,39534.392,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+ytd,revenue,236510.516,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+ytd,ebit,181486.709,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+ytd,group_ni,174044.095,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML
+ytd,parent_ni,173684.804,KRW billion,P,https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML

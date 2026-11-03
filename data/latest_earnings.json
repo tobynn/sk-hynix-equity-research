@@ -1,0 +1,57 @@
+{
+  "name": "SK하이닉스",
+  "file": "05_sk-hynix.md",
+  "release": "2026-10-28",
+  "dart": "https://dart.fss.or.kr/report/viewer.do?rcpNo=20261028800036&dcmNo=11629598&eleId=0&offset=0&length=0&dtd=HTML",
+  "news": "https://news.skhynix.com/en/q3-2026-business-results/",
+  "presentation": null,
+  "q3": {
+    "revenue": 104615.483,
+    "ebit": 83333.818,
+    "group_ni": 39775.593,
+    "parent_ni": 39534.392
+  },
+  "ytd": {
+    "revenue": 236510.516,
+    "ebit": 181486.709,
+    "group_ni": 174044.095,
+    "parent_ni": 173684.804
+  },
+  "balance": {
+    "cash_including_short_term": 114500,
+    "interest_bearing_debt": 15800,
+    "company_net_cash": 98700,
+    "total_equity": null,
+    "parent_equity": null,
+    "nci": null
+  },
+  "gaps": [
+    "9월 말 지배주주 자본과 비지배지분",
+    "ADR 신주와 자사주 취득·소각을 반영한 시점별 경제적 주식수",
+    "현금·단기투자·장기투자자산 및 리스부채의 계정별 대사",
+    "Kioxia 투자 처분·평가손익과 잔여 자산의 연결",
+    "9개월 현금흐름·설비투자·운전자본 상세"
+  ],
+  "thesis": "하이닉스는 3분기 누적 영업이익이 기존 연간 전망을 넘어섰다. 이전 모델의 연간 실적과 평가 결과를 그대로 유지할 수 없는 상황이다. 사업 이익과 투자자산 손익을 나누고, 자사주 매입과 배당이 반영된 현금·자본·주식수에서 평가를 다시 시작해야 한다.",
+  "outlook": "회사는 HBM4가 4분기 출하와 매출에서 HBM3E를 넘어설 것으로 전망했다. DDR5와 데이터센터용 NAND 제품 확대도 제시했다. 장기계약은 2027~2028년 생산능력의 50% 이상을 대상으로 하지만, 가격은 합의 범위 안에서 시장 상황을 반영한다. 계약 물량의 가시성이 이익률 고정을 뜻하지는 않는다.\n\nHBM Build에서는 제품 전환을 출하량·가격·수율·필요 투자에 연결해야 한다. 공개되지 않은 HBM 매출 비중을 임의로 입력하거나 전체 DRAM 성장률을 HBM 성장률로 옮기지 않는다. 공급 부족이 2030년까지 이어질 것이라는 설명은 회사 전망으로 다룬다.",
+  "cash": "회사 발표의 9월 말 순현금은 98.7조원이다. 발표에서 사용하는 현금 114.5조원과 차입금 15.8조원의 차이이며 반올림된 수치다. 단기 투자자산과 리스부채를 포함하는 모델 정의와의 계정별 대사가 필요하다.\n\n회사는 연간 약 100조원의 주주환원을 추진하고, 8월 발표한 40조원 자사주 매입은 완료했다고 밝혔다. 추가 취득 20조원 중 10조원은 소각 대상, 나머지 약 10조원은 임직원 보상용이다. 보상용 물량을 영구적인 유통주식 감소로 처리하면 주당가치가 과대평가될 수 있다.\n\nKioxia 투자 이익의 환원은 반복적인 메모리 영업이익과 나눠야 한다. 투자자산을 판 뒤 들어온 현금과 매각 전 장부자산을 동시에 DCF에 가산하지 않는다. ADR 납입 자금도 9월 말 잔액에 들어 있다면 다시 더하지 않는다.",
+  "checked_at": "2026-11-02",
+  "unit": "KRW billion",
+  "status": "preliminary_earnings_update_valuation_pending",
+  "old_model_version": "2026-10-18/research-v3",
+  "old_model_q4_implied": {
+    "revenue": 28489.483999999997,
+    "ebit": -9236.709000000003
+  },
+  "constant_q3_q4_diagnostic": {
+    "revenue": 341125.999,
+    "ebit": 264820.527,
+    "is_forecast": false
+  },
+  "latest_valuation": {
+    "DCF": null,
+    "RIM": null,
+    "PER": null,
+    "reason": "capital_cash_share_bridge_not_reconciled"
+  }
+}
